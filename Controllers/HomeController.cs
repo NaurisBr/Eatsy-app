@@ -1,4 +1,5 @@
-﻿using eatsy_app.Repositories;
+﻿using eatsy_app.Models;
+using eatsy_app.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace eatsy_app.Controllers
 {
     public class HomeController : Controller
     {
+        private RestaurantDBEntities objRestaurantDbEntities;
+
+        public HomeController()
+        {
+            objRestaurantDbEntities = new RestaurantDBEntities();
+
+        }
         // GET: Home
         public ActionResult Index()
         {
@@ -24,5 +32,12 @@ namespace eatsy_app.Controllers
             return View(objMultipleModels);
 
         } 
+
+        [HttpGet]
+        public JsonResult getItemUnitPrice(int itemId)
+        {
+            decimal UnitPrice = objRestaurantDbEntities.Items.Single(model => model.ItemID == itemId).ItemPrice;
+            return Json(UnitPrice, JsonRequestBehavior.AllowGet);
+        }
     }
 }
