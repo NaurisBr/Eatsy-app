@@ -74,3 +74,6 @@ C:\Users\nauri\source\repos\eatsy-app\eatsy-app\obj\Debug\eatsy-app.csproj.CoreC
 C:\Users\nauri\source\repos\eatsy-app\eatsy-app\obj\Debug\eatsy-app.csproj.CopyComplete
 C:\Users\nauri\source\repos\eatsy-app\eatsy-app\obj\Debug\eatsy-app.dll
 C:\Users\nauri\source\repos\eatsy-app\eatsy-app\obj\Debug\eatsy-app.pdb
+C:\Users\nauri\source\repos\eatsy-app\eatsy-app\bin\AjaxControlToolkit.dll
+C:\Users\nauri\source\repos\eatsy-app\eatsy-app\bin\AjaxMin.dll
+C:\Users\nauri\source\repos\eatsy-app\eatsy-app\bin\MvcHaack.Ajax.dll
