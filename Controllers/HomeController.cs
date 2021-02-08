@@ -1,5 +1,6 @@
 ﻿using eatsy_app.Models;
 using eatsy_app.Repositories;
+using eatsy_app.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,16 @@ namespace eatsy_app.Controllers
         {
             decimal UnitPrice = objRestaurantDbEntities.Items.Single(model => model.ItemID == itemId).ItemPrice;
             return Json(UnitPrice, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Index(OrderViewModel objOrderViewModel)
+        {
+
+            OrderRepository objOrderRepository = new OrderRepository();
+            objOrderRepository.AddOrder(objOrderViewModel);
+
+            return Json("Your order has been successfully placed!", JsonRequestBehavior.AllowGet);  
         }
     }
 }

@@ -20,11 +20,72 @@
         $("input[type=text]").change(function () {
             CalculateSubTotal();  
         }); 
+         
+        $("input[type=text]").keyup(function () {
+            CalculateBalance();
+        }); 
 
         $("#btnAddToList").click(function () {
             AddToTheItemList();
         });
+
+        $("#btnPayment").click(function () {
+            FinalPayment();
+        });
     });
+
+    function FinalPayment() {
+        var objOrderViewModel = {};
+        var ListOfOrderDetailViewModel = new Array(); 
+        objOrderViewModel.PaymentTypeId = $("#PaymentType").val();
+        objOrderViewModel.CustomerId = $("#Customer").val();
+        objOrderViewModel.FinalTotal = $("#txtFinalTotal").val();  
+
+        $("#tblRestaurantItemList").find("tr:gt(0)").each(function () {
+            var OrderDetailViewModel = {};
+            OrderDetailViewModel.Total = parseFloat($(this).find("td:eq(5)").text());
+            OrderDetailViewModel.ItemId = parseFloat($(this).find("td:eq(0)").text());
+            OrderDetailViewModel.UnitPrice = parseFloat($(this).find("td:eq(2)").text());
+            OrderDetailViewModel.Quantity = parseFloat($(this).find("td:eq(3)").text());
+            OrderDetailViewModel.Discount = parseFloat($(this).find("td:eq(4)").text());
+
+            ListOfOrderDetailViewModel.push(OrderDetailViewModel);
+
+        });
+
+        objOrderViewModel.ListOfOrderDetailViewModel = ListOfOrderDetailViewModel;
+
+        $.ajax({
+            async: true, 
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf-8',
+            data: Json.stringify(objOrderViewModel),
+            url: '/Home/Index',
+            success: function (data) {
+                alert(data); 
+            },
+            error: function () {
+                alert("There is a problem adding the data");
+            }
+
+        })
+
+    }
+
+    function CalculateBalance() {
+        var FinalAmount = $("#txtPaymentTotal").val(); 
+        var PaymentAmount = $("#txtPaymentAmount").val();
+        var ReturnAmount = $("#txtReturnTotal").val();
+        var BalanceAmount = parseFloat(FinalAmount) - parseFloat(PaymentAmount) + parseFloat(ReturnAmount);
+        $("#txtBalance").val(parseFloat(BalanceAmount).toFixed(2));
+        if (parseFloat(BalanceAmount) == 0) {
+            $("btnPayment").removeAttr("disabled");
+        } else {
+            $("btnPayment").attr("disabled", "disabled"); 
+        }
+
+    }
 
     function RemoveItem(itemId) {
         $(itemId).closest('tr').remove();   
@@ -61,6 +122,10 @@
         });
 
         $("#txtFinalTotal").val(parseFloat(FinalTotal).toFixed(2));
+        $("#txtPaymentTotal").val(parseFloat(FinalTotal).toFixed(2));
+        $("#txtBalance").val(parseFloat(FinalTotal).toFixed(2));
+
+
     }
 
     function ResetItem() {
@@ -107,6 +172,28 @@
 
 
 <style>
+
+    .modal {
+        text-align: center;
+        padding: 0!important; 
+
+    }
+
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px;
+
+    }
+
+    .modal-dialog{
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+
     fieldset {
         border: 1px solid #ddd !important;
         margin: 0;
@@ -262,6 +349,48 @@
 </fieldset>
 
 <div style="margin-top: 50px">
-    <input style="float: right" type="button" value="Checkout" name="save" id="btnSaveOrder" class="btn btn-primary"/> 
+    <input data-toggle="modal" data-target="#divPayment" style="float: right" type="button" value="Checkout" name="save" id="btnSaveOrder" class="btn btn-primary"/> 
+</div>
+
+<div id="divPayment" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-header">Payment</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            Payment Total :
+                            <input style="text-align: right" type="text" id="txtPaymentTotal" readonly="readonly" value="0.00" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            Payment Amount :
+                            <input style="text-align: right" type="text" id="txtPaymentAmount" value="0.00" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            Return Total :
+                            <input style="text-align: right" type="text" id="txtReturnTotal" value="0.00" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            Balance Amount :
+                            <input style="text-align: right" type="text" readonly="readonly" id="txtBalance" value="0.00" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success" id="btnPayment" value="Payment">Payment</button>
+                <button class="btn btn-danger" id="btnClose" data-dismiss="modal" value="close">Close</button>
+
+            </div>
+        </div>
+    </div>
 </div>
 
