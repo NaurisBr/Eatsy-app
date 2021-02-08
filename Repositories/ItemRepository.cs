@@ -26,7 +26,7 @@ namespace eatsy_app.Repositories
                                   {
                                       Text = obj.ItemName,
                                       Value = obj.ItemID.ToString(),
-                                      Selected = true
+                                      Selected = false
 
 
                                   }).ToList();
