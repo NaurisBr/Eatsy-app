@@ -17,7 +17,7 @@ namespace eatsy_app.Repositories
             objRestaurantDbEntities = new RestaurantDBEntities();
 
         }
-
+        //Iterates over all entries in the database for ItemId
         public IEnumerable<SelectListItem> GetAllItems()
         {
             var objSelectListItems = new List<SelectListItem>();
