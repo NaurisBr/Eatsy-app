@@ -12,6 +12,6 @@ namespace eatsy_app.ViewModel
         public decimal ItemPrice { get; set; }
 
 
-
+        // identical to sql server table fields
     }
 }
