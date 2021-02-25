@@ -18,7 +18,7 @@ namespace eatsy_app.Repositories
             objRestaurantDbEntities = new RestaurantDBEntities();
 
         }
-
+        // importing boostrap js module
         public IEnumerable<SelectListItem> GetAllCustomers()
         {
             var objSelectListItems = new List<SelectListItem>();
