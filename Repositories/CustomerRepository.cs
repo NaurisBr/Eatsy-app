@@ -9,7 +9,7 @@ namespace eatsy_app.Repositories
 {
     public class CustomerRepository
     {
-
+        //padding out columns
         private RestaurantDBEntities objRestaurantDbEntities;
 
 
