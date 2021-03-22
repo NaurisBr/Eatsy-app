@@ -12,7 +12,7 @@ namespace eatsy_app.Repositories
         //padding out columns
         private RestaurantDBEntities objRestaurantDbEntities;
 
-
+        //creating customer repository
         public CustomerRepository()
         {
             objRestaurantDbEntities = new RestaurantDBEntities();
