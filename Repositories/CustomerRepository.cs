@@ -19,6 +19,7 @@ namespace eatsy_app.Repositories
 
         }
         // importing boostrap js module
+        //retreiving all customer details
         public IEnumerable<SelectListItem> GetAllCustomers()
         {
             var objSelectListItems = new List<SelectListItem>();
