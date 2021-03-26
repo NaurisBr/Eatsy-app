@@ -22,6 +22,7 @@ namespace eatsy_app.Repositories
         //retreiving all customer details
         public IEnumerable<SelectListItem> GetAllCustomers()
         {
+            //saving selected items 
             var objSelectListItems = new List<SelectListItem>();
             objSelectListItems = (from obj in objRestaurantDbEntities.Customers
                                   select new SelectListItem()
