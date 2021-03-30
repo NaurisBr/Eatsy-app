@@ -44,7 +44,7 @@ namespace eatsy_app.Controllers
         [HttpPost]
         public JsonResult Index(OrderViewModel objOrderViewModel)
         {
-
+            //Informing users their order has been placed
             OrderRepository objOrderRepository = new OrderRepository();
             objOrderRepository.AddOrder(objOrderViewModel);
 
