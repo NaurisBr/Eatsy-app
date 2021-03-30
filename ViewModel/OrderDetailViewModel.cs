@@ -7,6 +7,7 @@ namespace eatsy_app.ViewModel
 {
     public class OrderDetailViewModel
     {
+        //Adding OrderDetailId property
         public int OrderDetailId { get; set; }
         public int ItemId { get; set; }
         public decimal UnitPrice { get; set; }
