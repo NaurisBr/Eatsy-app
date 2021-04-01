@@ -21,7 +21,7 @@ namespace eatsy_app.Controllers
         // GET: Home
         public ActionResult Index()
         {
-
+            //Home controller linked to repo
             CustomerRepository objCustomerRepository = new CustomerRepository();
             ItemRepository objItemRepository = new ItemRepository();
             PaymentTypeRepository objPaymentTypeRepository = new PaymentTypeRepository(); 
