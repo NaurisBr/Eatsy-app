@@ -26,7 +26,7 @@ namespace eatsy_app.Controllers
             ItemRepository objItemRepository = new ItemRepository();
             PaymentTypeRepository objPaymentTypeRepository = new PaymentTypeRepository(); 
 
-
+            //selecting list item from Tuple
             var objMultipleModels = new Tuple<IEnumerable<SelectListItem>, IEnumerable<SelectListItem>, IEnumerable<SelectListItem>>
                 (objCustomerRepository.GetAllCustomers(), objItemRepository.GetAllItems(), objPaymentTypeRepository.GetAllPaymentTypes());
 
