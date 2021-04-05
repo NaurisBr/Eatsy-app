@@ -33,7 +33,7 @@ namespace eatsy_app.Controllers
             return View(objMultipleModels);
 
         } 
-
+        //updating UI
         [HttpGet]
         public JsonResult getItemUnitPrice(int itemId)
         {
