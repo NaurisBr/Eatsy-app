@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace eatsy_app.Controllers
-{
+{//Renaming controllers
     public class HomeController : Controller
     {
         private RestaurantDBEntities objRestaurantDbEntities;
