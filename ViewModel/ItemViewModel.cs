@@ -7,6 +7,7 @@ namespace eatsy_app.ViewModel
 { //Completing item view model
     public class ItemViewModel
     {
+        //renaming properties
         public int ItemId { get; set; }
         public string ItemName { get; set; }
         public decimal ItemPrice { get; set; }
